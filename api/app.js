@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/inventory", (req, res) => {
+app.get("/inventories", (req, res) => {
   Inventory.find()
     .then((inventories) => {
       res.send(inventories);
@@ -29,7 +29,7 @@ app.get("/inventory", (req, res) => {
     });
 });
 
-app.post("/inventory", (req, res) => {
+app.post("/inventories", (req, res) => {
   let title = req.body.title;
   let location = req.body.location;
   let price = req.body.price;
@@ -43,7 +43,7 @@ app.post("/inventory", (req, res) => {
   });
 });
 
-app.delete("/inventory/:id", (req, res) => {
+app.delete("/inventories/:id", (req, res) => {
   Inventory.findOneAndRemove({
     _id: req.params.id,
   }).then((removedInventoryDoc) => {

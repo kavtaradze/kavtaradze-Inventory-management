@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InventoryViewComponent } from './pages/inventory-view/inventory-view.component';
 
 const routes: Routes = [
-  { path: 'inventory', component: InventoryViewComponent },
+  { path: 'inventories', component: InventoryViewComponent },
 ];
 
 @NgModule({

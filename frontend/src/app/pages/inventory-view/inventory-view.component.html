@@ -1,1 +1,37 @@
-<p>inventory-view works!</p>
+<p>dqwdqwd</p>
+<ul class="list-group list-group-horizontal">
+  <li class="list-group-item">ნივთის სახელი</li>
+  <li class="list-group-item">ნივთის ადგილმდებარეობა</li>
+  <li class="list-group-item">ნივთის ფასი</li>
+  <li class="list-group-item">ოპერაციები</li>
+</ul>
+<ul
+  *ngFor="let inventory of inventories"
+  class="list-group list-group-horizontal"
+>
+  <li class="list-group-item">{{ inventory.title }}</li>
+  <li class="list-group-item">{{ inventory.location }}</li>
+  <li class="list-group-item">{{ inventory.price }}</li>
+  <li class="list-group-item">
+    <button (click)="deleteInventory(inventory._id)">delete</button>
+  </li>
+</ul>
+
+<br />
+<br />
+<br />
+<div class="input-group">
+  <span class="input-group-text">First and last name</span>
+  <input #title type="text" aria-label="First name" class="form-control" />
+  <input #price type="text" aria-label="Last name" class="form-control" />
+</div>
+
+<button (click)="createNewInventory(title.value, location.value, price.value)">
+  add
+</button>
+<select #location class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option *ngFor="let o of options">
+    {{ o.name }}
+  </option>
+</select>
