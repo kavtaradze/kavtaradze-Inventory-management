@@ -1,0 +1,37 @@
+<div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">სახელი</span>
+  <input
+    #title
+    type="text"
+    class="form-control"
+    placeholder="შეიყვანეთ ნივთის სახელი"
+    aria-describedby="addon-wrapping"
+  />
+</div>
+<div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">ფასი </span>
+  <input
+    #price
+    type="text"
+    class="form-control"
+    placeholder="შეიყვანეთ ნივთის ფასი"
+    aria-describedby="addon-wrapping"
+  />
+</div>
+<div>
+  <select #location class="form-select" aria-label="Default select example">
+    <option selected>select</option>
+    <option *ngFor="let o of options">
+      {{ o.name }}
+    </option>
+  </select>
+</div>
+
+<button
+  routerLink="/inventories"
+  type="button"
+  class="btn btn-success"
+  (click)="createNewInventory(title.value, location.value, price.value)"
+>
+  დამატება
+</button>

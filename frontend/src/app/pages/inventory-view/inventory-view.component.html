@@ -1,37 +1,49 @@
-<p>dqwdqwd</p>
-<ul class="list-group list-group-horizontal">
-  <li class="list-group-item">ნივთის სახელი</li>
-  <li class="list-group-item">ნივთის ადგილმდებარეობა</li>
-  <li class="list-group-item">ნივთის ფასი</li>
-  <li class="list-group-item">ოპერაციები</li>
-</ul>
-<ul
-  *ngFor="let inventory of inventories"
-  class="list-group list-group-horizontal"
->
-  <li class="list-group-item">{{ inventory.title }}</li>
-  <li class="list-group-item">{{ inventory.location }}</li>
-  <li class="list-group-item">{{ inventory.price }}</li>
-  <li class="list-group-item">
-    <button (click)="deleteInventory(inventory._id)">delete</button>
-  </li>
-</ul>
-
-<br />
-<br />
-<br />
-<div class="input-group">
-  <span class="input-group-text">First and last name</span>
-  <input #title type="text" aria-label="First name" class="form-control" />
-  <input #price type="text" aria-label="Last name" class="form-control" />
-</div>
-
-<button (click)="createNewInventory(title.value, location.value, price.value)">
-  add
+<button type="button" class="btn btn-success" routerLink="/add">
+  დამატება
 </button>
-<select #location class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option *ngFor="let o of options">
-    {{ o.name }}
-  </option>
-</select>
+<div>
+  <select
+    #location
+    (click)="inventoryLocation(location.value)"
+    class="form-select"
+    aria-label="Default select example"
+  >
+    <option selected>select</option>
+    <option *ngFor="let o of options">
+      {{ o.name }}
+    </option>
+  </select>
+</div>
+<table *ngIf="show; else elseBlock" class="table caption-top">
+  <thead>
+    <tr>
+      <th scope="col">ნივთის სახელი</th>
+      <th scope="col">ნივთის ადგილმდებარეობა</th>
+      <th scope="col">ნივთის ფასი</th>
+      <th scope="col">ოპერაციები</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let inventory of inventories">
+      <td>{{ inventory.title }}</td>
+      <td>{{ inventory.location }}</td>
+      <td>{{ inventory.price }}</td>
+      <td>
+        <button
+          routerLink="/inventories"
+          (click)="deleteInventory(inventory._id)"
+          type="button"
+          class="btn btn-danger"
+        >
+          წაშლა
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #elseBlock><h1>სია ვერ მოიძებნა</h1></ng-template>
+
+<button type="button" class="btn btn-success" routerLink="/add">
+  დამატება
+</button>

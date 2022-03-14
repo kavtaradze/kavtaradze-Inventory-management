@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InventoryViewComponent } from './pages/inventory-view/inventory-view.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddInventoryComponent } from './pages/add-inventory/add-inventory.component';
 
 @NgModule({
-  declarations: [AppComponent, InventoryViewComponent],
+  declarations: [AppComponent, InventoryViewComponent, AddInventoryComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

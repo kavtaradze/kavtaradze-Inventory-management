@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InventoryService } from 'src/app/inventory.service';
 
 @Component({
@@ -8,6 +9,9 @@ import { InventoryService } from 'src/app/inventory.service';
 })
 export class InventoryViewComponent implements OnInit {
   inventories: any;
+  location = 'select';
+  show = false;
+
   options = [
     { name: 'მთავარი ოფისი', value: 1 },
     { name: 'კავეა გალერია', value: 2 },
@@ -16,22 +20,39 @@ export class InventoryViewComponent implements OnInit {
     { name: 'კავეა სითი მოლი', value: 5 },
   ];
 
-  constructor(private inventoryService: InventoryService) {}
+  constructor(
+    private inventoryService: InventoryService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.inventoryService.getInventories().subscribe((inventories) => {
-      this.inventories = inventories;
-    });
+    this.showLocalInventories();
   }
 
-  createNewInventory(title: string, location: string, price: string) {
-    this.inventoryService
-      .createInventory(title, location, price)
-      .subscribe((response: any) => console.log(response));
+  showLocalInventories() {
+    this.inventoryService.getInventories().subscribe((inventories) => {
+      let localInventories = [{}];
+
+      Object.values(inventories).forEach((inventory) => {
+        if (inventory.location == this.location || this.location == 'select')
+          localInventories.push(inventory);
+      });
+
+      localInventories.shift();
+      this.inventories = localInventories;
+      this.show = Object.keys(localInventories).length > 0;
+      //this.inventories = inventories;
+      this.inventoryLocation;
+    });
+  }
+  inventoryLocation(location: string) {
+    this.location = location;
+    this.showLocalInventories();
   }
   deleteInventory(id: string) {
-    this.inventoryService
-      .deleteCurrentInventory(id)
-      .subscribe((response: any) => console.log('deleted'));
+    this.inventoryService.deleteCurrentInventory(id).subscribe((res) => {
+      this.inventoryService.reloadComponent();
+    });
   }
 }
