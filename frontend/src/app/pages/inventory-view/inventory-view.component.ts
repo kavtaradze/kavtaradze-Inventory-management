@@ -8,7 +8,7 @@ import { InventoryService } from 'src/app/inventory.service';
   styleUrls: ['./inventory-view.component.scss'],
 })
 export class InventoryViewComponent implements OnInit {
-  inventories: any;
+  inventories: any[] = [];
   location = 'select';
   show = false;
 
@@ -32,18 +32,15 @@ export class InventoryViewComponent implements OnInit {
 
   showLocalInventories() {
     this.inventoryService.getInventories().subscribe((inventories) => {
-      let localInventories = [{}];
+      let localInventories: any[] = [];
 
       Object.values(inventories).forEach((inventory) => {
         if (inventory.location == this.location || this.location == 'select')
           localInventories.push(inventory);
       });
 
-      localInventories.shift();
       this.inventories = localInventories;
       this.show = Object.keys(localInventories).length > 0;
-      //this.inventories = inventories;
-      this.inventoryLocation;
     });
   }
   inventoryLocation(location: string) {

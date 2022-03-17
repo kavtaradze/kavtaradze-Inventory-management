@@ -1,49 +1,79 @@
-<button type="button" class="btn btn-success" routerLink="/add">
-  დამატება
-</button>
-<div>
-  <select
-    #location
-    (click)="inventoryLocation(location.value)"
-    class="form-select"
-    aria-label="Default select example"
-  >
-    <option selected>select</option>
-    <option *ngFor="let o of options">
-      {{ o.name }}
-    </option>
-  </select>
-</div>
-<table *ngIf="show; else elseBlock" class="table caption-top">
-  <thead>
-    <tr>
-      <th scope="col">ნივთის სახელი</th>
-      <th scope="col">ნივთის ადგილმდებარეობა</th>
-      <th scope="col">ნივთის ფასი</th>
-      <th scope="col">ოპერაციები</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let inventory of inventories">
-      <td>{{ inventory.title }}</td>
-      <td>{{ inventory.location }}</td>
-      <td>{{ inventory.price }}</td>
-      <td>
-        <button
-          routerLink="/inventories"
-          (click)="deleteInventory(inventory._id)"
-          type="button"
-          class="btn btn-danger"
-        >
-          წაშლა
+<div class="intro">
+  <div class="bg-image h-100" style="background-color: #6095f0">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <button type="button" class="btn btn-success" routerLink="/add">
+          ნივთის დამატება
         </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <p></p>
 
-<ng-template #elseBlock><h1>სია ვერ მოიძებნა</h1></ng-template>
+        <select
+          #location
+          (click)="inventoryLocation(location.value)"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected>select</option>
+          <option *ngFor="let o of options">
+            {{ o.name }}
+          </option>
+        </select>
 
-<button type="button" class="btn btn-success" routerLink="/add">
-  დამატება
-</button>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card shadow-2-strong" style="background-color: #f5f7fa">
+              <div class="card-body">
+                <table class="table caption-top mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">ნივთის სახელი</th>
+                      <th scope="col">ნივთის ადგილმდებარეობა</th>
+                      <th scope="col">ნივთის ფასი</th>
+                      <th scope="col">ოპერაციები</th>
+                    </tr>
+                  </thead>
+                </table>
+                <br />
+                <div class="inventories-scroll">
+                  <table
+                    *ngIf="show; else elseBlock"
+                    class="table caption-top mb-0"
+                  >
+                    <tbody>
+                      <tr *ngFor="let inventory of inventories">
+                        <td>{{ inventory.title }}</td>
+                        <td>{{ inventory.location }}</td>
+                        <td>{{ inventory.price }}</td>
+                        <td>
+                          <button
+                            routerLink="/inventories"
+                            (click)="deleteInventory(inventory._id)"
+                            type="button"
+                            class="btn btn-danger btn-sm px-3"
+                          >
+                            წაშლა
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <table>
+                  <ng-template #elseBlock
+                    ><h1 style="text-align: center">
+                      სია ვერ მოიძებნა
+                    </h1></ng-template
+                  >
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p></p>
+        <button type="button" class="btn btn-success" routerLink="/add">
+          ნივთის დამატება
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
