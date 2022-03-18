@@ -10,7 +10,7 @@ import { InventoryService } from 'src/app/inventory.service';
 export class InventoryViewComponent implements OnInit {
   inventories: any[] = [];
   location = 'select';
-  show = false;
+  show = true;
 
   options = [
     { name: 'მთავარი ოფისი', value: 1 },
