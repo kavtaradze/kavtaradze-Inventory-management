@@ -4,6 +4,7 @@ import { AddInventoryComponent } from './pages/add-inventory/add-inventory.compo
 import { InventoryViewComponent } from './pages/inventory-view/inventory-view.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'inventories', pathMatch: 'full' },
   { path: 'inventories', component: InventoryViewComponent },
   { path: 'add', component: AddInventoryComponent },
 ];

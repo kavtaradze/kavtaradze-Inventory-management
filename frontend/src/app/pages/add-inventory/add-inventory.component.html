@@ -1,37 +1,71 @@
-<div class="input-group flex-nowrap">
-  <span class="input-group-text" id="addon-wrapping">სახელი</span>
-  <input
-    #title
-    type="text"
-    class="form-control"
-    placeholder="შეიყვანეთ ნივთის სახელი"
-    aria-describedby="addon-wrapping"
-  />
-</div>
-<div class="input-group flex-nowrap">
-  <span class="input-group-text" id="addon-wrapping">ფასი </span>
-  <input
-    #price
-    type="text"
-    class="form-control"
-    placeholder="შეიყვანეთ ნივთის ფასი"
-    aria-describedby="addon-wrapping"
-  />
-</div>
-<div>
-  <select #location class="form-select" aria-label="Default select example">
-    <option selected>select</option>
-    <option *ngFor="let o of options">
-      {{ o.name }}
-    </option>
-  </select>
-</div>
+<div class="intro">
+  <div class="bg-image h-100" style="background-color: #6095f0">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <div class="card shadow-2-strong" style="background-color: #f5f7fa">
+              <div class="card-body">
+                <div class="input-group flex-nowrap">
+                  <input
+                    #title
+                    type="text"
+                    class="form-control"
+                    placeholder="შეიყვანეთ ნივთის სახელი"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
 
-<button
-  routerLink="/inventories"
-  type="button"
-  class="btn btn-success"
-  (click)="createNewInventory(title.value, location.value, price.value)"
->
-  დამატება
-</button>
+                <div class="input-group flex-nowrap">
+                  <input
+                    #price
+                    type="text"
+                    class="form-control"
+                    placeholder="შეიყვანეთ ნივთის ფასი"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <div>
+                  <select
+                    #location
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>აირჩიეთ ადგილმდებარეობა</option>
+                    <option *ngFor="let o of options">
+                      {{ o.name }}
+                    </option>
+                  </select>
+                  <p></p>
+                  <div class="container">
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      (click)="
+                        createNewInventory(
+                          title.value,
+                          location.value,
+                          price.value
+                        )
+                      "
+                    >
+                      ნივთის დამატება
+                    </button>
+                    <p></p>
+                    <button
+                      routerLink="/inventories"
+                      type="button"
+                      class="btn btn-success"
+                    >
+                      მთავარი გვერდი
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
